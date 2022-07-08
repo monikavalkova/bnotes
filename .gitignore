@@ -220,6 +220,9 @@ csx/
 ecf/
 rcf/
 
+appsettings.json
+docker-compose.yml
+
 # Windows Store app package directories and files
 AppPackages/
 BundleArtifacts/
