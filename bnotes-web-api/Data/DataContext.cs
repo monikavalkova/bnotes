@@ -12,7 +12,5 @@ public class DataContext : DbContext
     {
     }
 
-    public DbSet<bnotes_web_api.Models.Friend>? Friends { get; set; }
-    public DbSet<bnotes_web_api.Models.Note>? Notes { get; set; }
-    public DbSet<bnotes_web_api.Models.Favourite>? Favourites { get; set; }
+    public DbSet<Friend>? Friends { get; set; }
 }

@@ -20,13 +20,13 @@ public class SeedDatabase
 
     private static void populateFriends(DataContext context)
     {
-        // SET IDENTITY_INSERT Friends OFF;  (must do beforehand)
         if (context.Friends.Any()) { return; }
         context.Friends.AddRange(
             new Friend
             {
                 FirstName = "Andrea",
                 BirthDate = new DateTime(2000, 6, 2),
+                ThingsTheyLike = "Lindt"
             },
             new Friend
             {
@@ -39,16 +39,12 @@ public class SeedDatabase
                 FirstName = "Stefan",
                 BirthDate = new DateTime(2000, 12, 31),
             },
-                new Friend
-                {
-                    FirstName = "Gabriel",
-                    BirthDate = new DateTime(2000, 9, 13),
-                },
-                new Friend
-                {
-                    FirstName = "Kristina",
-                    BirthDate = new DateTime(2000, 12, 12),
-                }
+            new Friend
+            {
+                FirstName = "Gabriel",
+                BirthDate = new DateTime(2000, 9, 13),
+                ThingsTheyLike = "coding competitions"
+            }
         );
     }
 

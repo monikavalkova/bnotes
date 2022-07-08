@@ -15,7 +15,6 @@ namespace bnotes_web_api.Controllers
             _context = context;
         }
 
-        // GET: Friends
         [HttpGet(Name = "GetAllFriends")]
         public List<FriendResp> GetFriends()
         {
@@ -33,25 +32,6 @@ namespace bnotes_web_api.Controllers
             };
         }
 
-        [Route("/things")] //rename
-        [HttpGet]
-        public FriendFavouritesResp GetDetails(int? id)
-        {
-            if (id == null || _context.Friends == null)
-            {
-                return null;
-            }
-            var friend = _context.Friends.FirstOrDefault(m => m.FriendId == id); // could be async...
-            if (friend == null)
-            {
-                return null;
-            }
-            return new FriendFavouritesResp
-            {
-                FirstName = friend.FirstName,
-                FavouriteThings = _context.Favourites.Where(f => f.FriendId == id).Select(t => t.Title)
-            };
-        }
         [HttpPost]
         public async Task<FriendResp> Create([Bind("FirstName,BirthDate")] FriendReq fr)
         {
@@ -62,7 +42,8 @@ namespace bnotes_web_api.Controllers
 
             var savedEntity = _context.Add(mapToEntity(fr));
             await _context.SaveChangesAsync();
-            return mapToResp(savedEntity.Entity); //todo Fix
+            
+            return mapToResp(savedEntity.Entity);
         }
 
         [HttpDelete("{id:int}")]

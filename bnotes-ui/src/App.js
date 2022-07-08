@@ -68,6 +68,7 @@ function App() {
     const renderData = () => {
         return (
             <>
+            <h1 className="title">Remembersy</h1>
                 <AddFriendForm addFriend={addNewFriend} />
                 <section>
                     {

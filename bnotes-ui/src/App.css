@@ -8,6 +8,22 @@
   pointer-events: none;
 }
 
+body {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.title {
+  font-family: 'Inter';
+  font-size: 40px;
+  color: #262B4C;
+  padding-top: 1rem;
+  margin-bottom: 0px;
+  margin-top: 2rem;
+  text-align: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -179,7 +195,7 @@ form {
 }
 
 .card-form {
-	padding: 2rem 1rem 0;
+	padding: 1rem 1rem 0;
 }
 
 .action {
