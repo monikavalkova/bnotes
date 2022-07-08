@@ -8,7 +8,7 @@ function AddFriendForm({ addFriend }) {
     const birthDate = document.getElementById('bdFriendToAdd');
 
     if (!firstName || !firstName.value || !birthDate || !birthDate.value) {
-      console.log('First name and birthday are required.');
+      console.log('First name and date of birth are required.');
       return;
     }
     addFriend({ firstName: firstName.value, birthDate: birthDate.value });

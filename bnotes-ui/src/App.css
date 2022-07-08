@@ -109,56 +109,8 @@ form {
   flex-wrap: wrap;
 }
 
-.pure-button-rounded {
-  display: block;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 8px;
-  color: #333;
-  box-shadow: 
-      inset 0 2px 0 rgba(0,0,0,.2), 
-      0 0 4px rgba(0,0,0,0.1);
-}
-
-.pure-button-rounded:focus {
-  outline: none;
-  box-shadow: 
-      inset 0 2px 0 rgba(0,0,0,.2), 
-      0 0 4px rgba(0,0,0,0.1), 
-      0 0 5px 1px #51CBEE;
-}
-
-.pure-input-rounded {
-  display: block;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 8px;
-  color: #333;
-  box-shadow: 
-      inset 0 2px 0 rgba(0,0,0,.2), 
-      0 0 4px rgba(0,0,0,0.1);
-}
-
-.pure-input-rounded:focus {
-  outline: none;
-  box-shadow: 
-      inset 0 2px 0 rgba(0,0,0,.2), 
-      0 0 4px rgba(0,0,0,0.1), 
-      0 0 5px 1px #51CBEE;
-}
-
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .input {
