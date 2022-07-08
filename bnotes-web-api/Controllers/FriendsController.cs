@@ -64,6 +64,27 @@ namespace bnotes_web_api.Controllers
             return mapToResp(savedEntity.Entity); //todo Fix
         }
 
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Friends == null)
+            {
+                return NotFound();
+            }
+
+            var friend = _context.Friends.FirstOrDefault(m => m.FriendId == id);
+            _context.Friends.Attach(friend);
+            _context.Friends.Remove(friend);
+            _context.SaveChanges();
+            
+            if (friend == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         private Friend mapToEntity(FriendReq fr)
         {
             DateTime parsedDate;
@@ -152,23 +173,6 @@ namespace bnotes_web_api.Controllers
     //     return View(friend);
     // }
 
-    // // GET: Friends/Delete/5
-    // public async Task<IActionResult> Delete(int? id)
-    // {
-    //     if (id == null || _context.Friend == null)
-    //     {
-    //         return NotFound();
-    //     }
-
-    //     var friend = await _context.Friend
-    //         .FirstOrDefaultAsync(m => m.FriendId == id);
-    //     if (friend == null)
-    //     {
-    //         return NotFound();
-    //     }
-
-    //     return View(friend);
-    // }
 
     // // POST: Friends/Delete/5
     // [HttpPost, ActionName("Delete")]
