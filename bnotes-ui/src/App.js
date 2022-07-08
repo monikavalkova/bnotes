@@ -16,8 +16,8 @@ function App() {
                 }
                 return response.json();
             })
-            .then(data => {
-                setData({ friends: data, loading: false })
+            .then(respFromApi => {
+                setData({ friends: respFromApi, loading: false })
             })
             .catch(err => console.log(err))
     }
@@ -26,9 +26,8 @@ function App() {
         if(!id) return;
         fetch(`friends/${id}`, { method: 'DELETE' })
             .then(() => {
-                let newFriendsList = data.friends.filter((_, i) => i !== id)
-                const newData = Object.assign(data, {...data, friends: newFriendsList});
-                setData(newData);
+                let newFriendsList = data.friends.filter(f => f.friendId !== id);
+                setData({loading: false, friends: newFriendsList});
             });
     }
 
@@ -45,18 +44,27 @@ function App() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(friend)
-        });
-
-        let newFriendsList = [].concat(data.friends);
-        console.log(newFriendsList);
-        newFriendsList.push(friend);
-
-        setData((prevData) => ({
-            ...prevData, friends: newFriendsList
-        }));
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(
+                    `This is an HTTP error: The status is ${response.status}`
+                );
+            }
+            return response.json();
+        })
+        .then(respFromApi => {
+            let newFriendsList = data.friends.concat(respFromApi);
+            console.log('new friends list after adding created entity');
+            console.log(newFriendsList);
+            setData({loading: false, friends: newFriendsList});
+        })
+        .catch(err => console.log(err));
     }
-    const currentDate = new Date().toISOString().substring(5);
+
+    const currentDayOfyear = daysIntoYear(new Date());
     const gradients = ['#6E70DA', '#6BBDD7', '#BAE0FF', '#F8F37B', '#FE4518', '#FEB025', '#BAE0FF', '#6BD7A1', '#AFD0D6', '#AFD0D6', '#F67E7D', '#FFB997'];
+    
     const renderData = () => {
         return (
             <>
@@ -65,11 +73,10 @@ function App() {
                     {
                         data.friends
                             .filter(f => {
-                                if(!f.birthDate) return false;
-                                const friendDate = new Date(f.birthDate).toISOString();
-                                return friendDate > currentDate;
+                                if(!f.dayOfYear) return false;
+                                return f.dayOfYear >= currentDayOfyear;
                             })
-                            .sort((a, b) => (a.birthDate).localeCompare(b.birthDate))
+                            .sort((a, b) => a.dayOfYear -  b.dayOfYear)
                             .map(f => (<Friend data={f} key={f.birthDate} 
                             removeFriend={removeFriend}
                             gradient={gradients[Math.floor(Math.random()*gradients.length)]}/>))
@@ -77,11 +84,10 @@ function App() {
                     {
                         data.friends
                             .filter(f => {
-                                if(!f.birthDate) return false;
-                                const friendDate = new Date(f.birthDate).toISOString();
-                                return friendDate <= currentDate; 
+                                if(!f.dayOfYear) return false;
+                                return f.dayOfYear < currentDayOfyear; 
                             })
-                            .sort((a, b) => (a.birthDate).localeCompare(b.birthDate))
+                            .sort((a, b) => a.dayOfYear - b.dayOfYear)
                             .map(f => (<Friend data={f} 
                             removeFriend={removeFriend}
                             gradient={gradients[Math.floor(Math.random()*gradients.length)]} 
@@ -101,6 +107,10 @@ function App() {
     }
 
     return renderData();
+}
+
+function daysIntoYear(date){
+    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
 
 export default App;

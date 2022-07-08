@@ -16,5 +16,7 @@ namespace bnotes_web_api.Models
         public DateTime BirthDate { get; set; }
         public List<Note> Notes { get; set; }
         public List<Favourite> Favourites { get; set; }
+
+        public string? ThingsTheyLike { get; set; }
     }
 }

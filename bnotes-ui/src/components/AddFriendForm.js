@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 function AddFriendForm({ addFriend }) {
   const handleSubmit = e => {
+    e.preventDefault();
     const firstName = document.getElementById('nameFriendToAdd');
     const birthDate = document.getElementById('bdFriendToAdd');
-    console.log('sheit');
+
     if (!firstName || !firstName.value || !birthDate || !birthDate.value) {
       console.log('First name and birthday are required.');
       return;
@@ -13,7 +14,6 @@ function AddFriendForm({ addFriend }) {
     addFriend({ firstName: firstName.value, birthDate: birthDate.value });
     firstName.value = '';
     birthDate.value = '';
-    e.preventDefault();
   }
 
   return (

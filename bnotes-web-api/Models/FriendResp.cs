@@ -9,5 +9,7 @@ namespace bnotes_web_api.Models
         [Required]
         public string FirstName { get; set; }
         public string BirthDate { get; set; }
+        public int DayOfYear { get; set; }
+        public string? ThingsTheyLike { get; set; }
     }
 }

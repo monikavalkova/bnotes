@@ -28,7 +28,8 @@ namespace bnotes_web_api.Controllers
             {
                 FirstName = f.FirstName,
                 FriendId = f.FriendId,
-                BirthDate = f.BirthDate.ToString("yyyy-MM-dd")
+                BirthDate = f.BirthDate.ToString("yyyy-MM-dd"),
+                DayOfYear = f.BirthDate.DayOfYear
             };
         }
 
