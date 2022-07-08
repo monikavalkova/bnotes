@@ -1,21 +1,23 @@
 import React from 'react';
 import '../App.css';
 
-function Friend({data, gradient}){
+function Friend({data, gradient, removeFriend}){
     const day = data.birthDate.substring(8, 10);
     const month = data.birthDate.substring(5,7);
 
 
     const contentStyle = {
-        background: 'linear-gradient(90deg, ' + {gradient} + ' 15%, white 15%)',
+        background: `linear-gradient(90deg, ${gradient} 15%, white 15%)`,
     }
 
     return (
        <article className="friendQuickView" 
        style={contentStyle}>
-       
             <h3 className="friendCard friendName">{data.firstName}</h3>
             <h5 className="friendCard friendBd">{day}, {convertMonth(month)}</h5>
+            <button 
+            onClick={() => removeFriend(data.friendId)}
+            className="friendCard removeFriendBtn">x</button>
        </article> 
     );
 }

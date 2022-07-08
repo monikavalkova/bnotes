@@ -1,0 +1,58 @@
+/*** I DID NOT DO THIS PAGE https://freefrontend.com/css-lists/ ***/
+
+/*** FONTS ***/
+@import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
+
+/*** STYLE ***/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fafafa;
+  color: #1d1f20;
+  font-family: 'Raleway', sans-serif;
+}
+
+.mainSection {
+  display: block;
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 1rem;
+}
+
+ol.gradient-list {
+  counter-reset: gradient-counter;
+  list-style: none;
+  margin: 1.75rem 0;
+  padding-left: 1rem;
+}
+
+li {
+  background: #fafafa;
+  border-radius: 0 0.5rem 0.5rem 0.5rem;
+  @extend %boxshadow;
+    counter-increment: gradient-counter;
+    margin-top: 1rem;
+    min-height: 3rem;
+    padding: 1rem 1rem 1rem 3rem;
+    position: relative;
+    @for $i from 1 through 5 {
+      &:nth-child(10n+#{$i}):before {
+        background: linear-gradient(135deg, rgba( #a2ed56, $i * 0.2) 0%,rgba(#fddc32, $i * 0.2) 100%);
+      }
+    }
+    @for $i from 6 through 10 {
+      &:nth-child(10n+#{$i}):before {
+        background: linear-gradient(135deg, rgba( #a2ed56, 1 - (($i - 5) * 0.2)) 0%,rgba(#fddc32, 1 - (($i - 5) * 0.2)) 100%);
+      }
+    }
+}

@@ -26,7 +26,7 @@ function AddFriendForm({ addFriend }) {
         <input id="bdFriendToAdd" type="date" className="input-field" placeholder="BirthDate" />
       </div>
 
-      <div class="action">
+      <div className="action">
         <button id="btnFriendToAdd" type="submit" className="action-button">add</button>
       </div>
     </form>

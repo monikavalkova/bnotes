@@ -22,6 +22,16 @@ function App() {
             .catch(err => console.log(err))
     }
 
+    const removeFriend = id => {
+        if(!id) return;
+        fetch(`friends/${id}`, { method: 'DELETE' })
+            .then(() => {
+                let newFriendsList = data.friends.filter((_, i) => i !== id)
+                const newData = Object.assign(data, {...data, friends: newFriendsList});
+                setData(newData);
+            });
+    }
+
     const addNewFriend = friend => {
         if (data.loading) {
             console.log('data is still loading');
@@ -45,7 +55,8 @@ function App() {
             ...prevData, friends: newFriendsList
         }));
     }
-    const currentDate = new Date().toISOString().substring(5, 10);
+    const currentDate = new Date().toISOString().substring(5);
+    const gradients = ['#6E70DA', '#6BBDD7', '#BAE0FF', '#F8F37B', '#FE4518', '#FEB025', '#BAE0FF', '#6BD7A1', '#AFD0D6', '#AFD0D6', '#F67E7D', '#FFB997'];
     const renderData = () => {
         return (
             <>
@@ -54,21 +65,27 @@ function App() {
                     {
                         data.friends
                             .filter(f => {
-                                const friendDate = f.birthDate.substring(5, 10);
+                                if(!f.birthDate) return false;
+                                const friendDate = new Date(f.birthDate).toISOString();
                                 return friendDate > currentDate;
                             })
                             .sort((a, b) => (a.birthDate).localeCompare(b.birthDate))
-                            .map(f => (<Friend data={f} key={f.birthDate} />))
+                            .map(f => (<Friend data={f} key={f.birthDate} 
+                            removeFriend={removeFriend}
+                            gradient={gradients[Math.floor(Math.random()*gradients.length)]}/>))
                     }
                     {
                         data.friends
                             .filter(f => {
-                                const friendDate = f.birthDate.substring(5, 10);
-
-                                return friendDate < currentDate;
+                                if(!f.birthDate) return false;
+                                const friendDate = new Date(f.birthDate).toISOString();
+                                return friendDate <= currentDate; 
                             })
                             .sort((a, b) => (a.birthDate).localeCompare(b.birthDate))
-                            .map(f => (<Friend data={f} gradient="#BAE0FF" key={f.birthDate} />))
+                            .map(f => (<Friend data={f} 
+                            removeFriend={removeFriend}
+                            gradient={gradients[Math.floor(Math.random()*gradients.length)]} 
+                            key={f.birthDate} />))
                     }
                 </section>
             </>
