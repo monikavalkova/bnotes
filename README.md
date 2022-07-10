@@ -1,7 +1,7 @@
 ## Context
 
 This project was done in 24 hours as part of a one-day hackatron, 
-organized by School of Applied Technology, aka SALT
+organized by School of Applied Technology, aka SALT. 🧂 
 
 ## Idea
 
@@ -12,6 +12,7 @@ I created a simple application that could do this for me.
 
 1. You need to create a local database on your SQL server. Name it however you like, 
 but make sure to adapt the connection string at appsettings.json
+2. Update the database with 'dotnet ef database update'
 2. Run the .Net project with 'dotnet watch run'
 3. Run the React project with 'npm start'
 
