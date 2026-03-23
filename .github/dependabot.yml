@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # Enable version updates for npm (bnotes-ui)
+  - package-ecosystem: "npm"
+    directory: "/bnotes-ui"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "monikavalkova"
+    reviewers:
+      - "monikavalkova"
+    open-pull-requests-limit: 10
+
+  # Enable version updates for NuGet (.NET)
+  - package-ecosystem: "nuget"
+    directory: "/bnotes-web-api"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "monikavalkova"
+    reviewers:
+      - "monikavalkova"
+    open-pull-requests-limit: 10
+
+  # Enable version updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "monikavalkova"
+    reviewers:
+      - "monikavalkova"
+    open-pull-requests-limit: 5
