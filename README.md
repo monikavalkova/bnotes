@@ -23,6 +23,25 @@ React with Javascript,
 SQL Sever
 Docker
 
+## Commands
+
+### Build and Test
+
+**UI (React):**
+```bash
+cd bnotes-ui
+npm ci
+npm test -- --watchAll=false
+npm run build
+```
+
+**API (.NET):**
+```bash
+dotnet restore
+dotnet build --configuration Release
+dotnet test --configuration Release
+```
+
 ## Future
 
 Future improvements might include adding the following:
